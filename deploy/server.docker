@@ -1,0 +1,23 @@
+FROM php:7.3.3-apache
+
+LABEL maintainer="kunze@earthlinginteractive.com"
+
+RUN apt-get update && apt-get install -f -y wget gnupg2 git zip libmcrypt-dev libpq-dev && a2enmod rewrite \
+    && docker-php-ext-install -j$(nproc) pdo pdo_pgsql
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+
+COPY ./deploy/vhost /etc/apache2/sites-enabled/000-default.conf
+COPY ./deploy/server-entrypoint.sh /server-entrypoint.sh
+
+COPY ./ /var/www
+
+RUN wget -q 'https://getcomposer.org/installer' -O - | php; \
+    mv composer.phar /usr/local/bin/composer;
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]

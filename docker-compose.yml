@@ -1,0 +1,47 @@
+version: '2'
+services:
+  laravel-starter-kit-server:
+    build:
+      context: ./
+      dockerfile: deploy/server.docker
+    hostname: 'laravel-starter-kit-server'
+    container_name: 'laravel-starter-kit-server'
+    entrypoint: /server-entrypoint.sh
+    env_file: ./server/.env
+    command: 'apache2-foreground'
+    ports:
+      - '4000:80'
+    volumes:
+      - './:/var/www'
+      - '/var/www/server/node_modules'
+      - './deploy/server-entrypoint.sh:/server-entrypoint.sh'
+    depends_on:
+      - laravel-starter-kit-db
+    working_dir: '/var/www'
+    links:
+      - 'laravel-starter-kit-db:db'
+    networks:
+      - app
+  laravel-starter-kit-db:
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_DB=laravel-starter-kit
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST=localhost
+      - POSTGRES_PORT=5432
+    image: 'postgres:11.1'
+    volumes:
+      - 'laravel-db-data:/var/lib/postgresql'
+    container_name: 'laravel-starter-kit-db'
+    ports:
+      - '5432:5432'
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  laravel-db-data:
+  laravel-starter-kit-server-data:
