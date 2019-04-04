@@ -13,7 +13,7 @@ services:
       - '4000:80'
     volumes:
       - './:/var/www'
-      - '/var/www/server/node_modules'
+      - 'laravel-starter-kit-server-node-modules:/var/www/server/node_modules'
       - './deploy/server-entrypoint.sh:/server-entrypoint.sh'
     depends_on:
       - laravel-starter-kit-db
@@ -44,4 +44,4 @@ networks:
 
 volumes:
   laravel-db-data:
-  laravel-starter-kit-server-data:
+  laravel-starter-kit-server-node-modules:
