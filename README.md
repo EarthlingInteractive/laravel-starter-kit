@@ -59,6 +59,8 @@ Build javascript and sass:
 cd server/ && npm run prod
 ```
 
+Compiling is done via [Laravel Mix](https://laravel-mix.com/docs/4.0/mixjs).
+
 ### Deploying / Publishing
 
 
