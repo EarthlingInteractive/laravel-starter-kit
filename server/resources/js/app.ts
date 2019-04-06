@@ -1,13 +1,15 @@
-
 /**
- * First we will load all of this project's JavaScript dependencies
+ * import bootstrap
  */
+import 'bootstrap';
+import Greeter from './greeter';
 
-import './bootstrap';
-
+let greeter: Greeter;
+greeter = new Greeter("world");
+console.log(greeter.greet());
 
 /**
- * Now do some jquery, lodash, or axios
+ * Now do some jquery
  */
 
 $('.toast').toast('show');
