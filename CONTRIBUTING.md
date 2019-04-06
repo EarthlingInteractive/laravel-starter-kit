@@ -5,22 +5,21 @@ agree to abide by the project's [code of conduct](https://github.com/EarthlingIn
 
 Fork, then clone the repo:
 
-    git clone git@github.com:<your-username>/full-stack-starter-kit.git;
+    git clone git@github.com:EarthlingInteractive/laravel-starter-kit.git;
 
 Set up your machine:
 
-    cd full-stack-starter-kit && docker-compose up;
+    cd laravel-starter-kit && docker-compose up -d;
 
 Make sure the tests pass:
 
-    docker exec -it client npm test;
-    docker exec -it server cd server && ./vendor/bin/phpunit
+    docker exec -it laravel-starter-kit-server cd server && ./vendor/bin/phpunit
 
 Make your change. Add tests for your change. Make the tests pass.
 
 Push to your fork and [submit a pull request][pr].
 
-[pr]: https://github.com/EarthlingInteractive/full-stack-starter-kit/compare/
+[pr]: https://github.com/EarthlingInteractive/laravel-starter-kit/compare/
 
 At this point you're waiting on us. We may suggest some changes or improvements or alternatives.
 
